@@ -25,7 +25,7 @@ class Scraper
 			@zip_code << content[0]
 			@place_name << content[1]
 			@state_name << content[2]
-			sleep 1
+			sleep 1	
 		end
 		@zip_code = @zip_code.compact
 		@place_name =  @place_name.compact
@@ -41,6 +41,7 @@ class Scraper
 			  		search_result = page.form_with(:class => "zip-form") do |search|
 			    		search.zip = zip
 				  	end.submit
+				  	sleep 3.5
 					  	search_result.search(".provider").each do |provider|
 					  		provider_result = provider.search(".features > a").text
 					  		speed_result = provider.search(".speed").text
