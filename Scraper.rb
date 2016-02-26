@@ -6,7 +6,8 @@ require 'csv'
 require 'mechanize'
 
 class Scraper
-	def initialize(folder, csvfile, filename)
+	def initialize(url, folder, csvfile, filename)
+		@url = url
 		@folder = folder
 		@csvfile = csvfile
 		@filename = filename
@@ -15,7 +16,8 @@ class Scraper
 	def read_content
 		@zip_code = []
 		@place_name = []
-		@state_name = []		
+		@state_name = []
+				# 
 		file_path = "#{@folder}/#{@csvfile}" || "#{@csvfile}"
 		content = CSV.read(file_path)
 		content.each do |content|
@@ -26,8 +28,8 @@ class Scraper
 			sleep 1
 		end
 		@zip_code = @zip_code.compact
-		# @place_name.compact
-		# @state_name.compact
+		@place_name =  @place_name.compact
+		@state_name = @state_name.compact
 	end
 
 	def write_content	
@@ -35,7 +37,7 @@ class Scraper
 		CSV.open(file_path, "wb") do |csv|
 			@zip_code.each do |zip|
 				mechanize = Mechanize.new
-				mechanize.get("http://www.highspeedinternet.com/") do |page|
+				mechanize.get(@url) do |page|
 			  		search_result = page.form_with(:class => "zip-form") do |search|
 			    		search.zip = zip
 				  	end.submit

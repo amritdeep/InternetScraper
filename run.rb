@@ -1,6 +1,7 @@
 require_relative 'scraper'
+require 'pry'
 
-scraper = Scraper.new("files", "post_code_demo.csv", "output.csv")
+scraper = Scraper.new("http://www.highspeedinternet.com/", "files", "input.csv", "output.csv")
 content = scraper.read_content
 output = scraper.write_content
-puts content
+puts output.count
