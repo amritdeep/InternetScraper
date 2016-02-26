@@ -1,6 +1,8 @@
+require 'pry'
+
 class Scraper
 	def hello
-		puts "hello"		
+		"hello"		
 	end
 
 end
