@@ -3,11 +3,14 @@ require 'rspec'
 require 'pry'
 
 describe Scraper do
-	let(:scraper) { Scraper.new }
+	let(:scraper) { Scraper.new("files", "post_code_demo.csv") }
 
-	it "should return hello word" do
-		result = scraper.hello
-		expect(result).to eql("hello")
+	it "should read csv file" do
+		result = scraper.read_content
+
+		expect(result.count).to eql(15)
+		expect(result.first).to eql("210")
+		expect(result.last).to eql("1007")
 	end
 	
 end
