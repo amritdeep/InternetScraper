@@ -11,4 +11,5 @@ COPY . /workspace/
 
 RUN gem install bundler && bundle install
 
-CMD ls
+CMD ruby internet-scraper.rb
+
