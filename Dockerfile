@@ -9,4 +9,6 @@ COPY Gemfile /workspace/Gemfile
 COPY Gemfile.lock /workspace/Gemfile.lock
 COPY . /workspace/
 
-# CMD["ls"]
+RUN gem install bundler && bundle install
+
+CMD ls
